@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static "css/style.css" %}>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;1,500&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Account - PizzaHouse | Ecommerce</title>
+</head>
+
+<style>
+    .account-page {
+        padding: 50px 0;
+        background: radial-gradient(#fff, #ffd6d6);
+    }
+
+    .form-container {
+        background: #fff;
+        width: 300px;
+        height: 400px;
+        position: relative;
+        text-align: center;
+        padding: 20px 0;
+        margin: auto;
+        box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .form-container span {
+        font-weight: bold;
+        padding: 0 10px;
+        color: #555;
+        cursor: pointer;
+        width: 100px;
+        display: inline-block;
+    }
+
+    .form-btn {
+        display: inline-block;
+
+    }
+
+    .form-container form {
+        max-width: 300px;
+        padding: 0 20px;
+        position: absolute;
+        top: 130px;
+        transition: transform 1s;
+    }
+
+    form input {
+        width: 100%;
+        height: 30px;
+        margin: 10px 0;
+        padding: 0 10px;
+        border: 1px solid #ccc;
+    }
+
+    form .btn {
+        width: 100%;
+        border: none;
+        cursor: pointer;
+        margin: 10px 0;
+    }
+
+    form .btn:focus {
+        outline: none;
+
+    }
+
+    #loginForm {
+        left: -300px;
+    }
+
+    #RegForm {
+        left: 0;
+    }
+
+    form a {
+        font-size: 12px;
+    }
+
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+
+    }
+
+    .pay {
+        display: flex;
+        justify-content: center;
+    }
+
+    .parent {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .box {
+        flex: 1 1 300px; /*  Stretching: */
+        flex: 0 1 450px; /*  No stretching: */
+        margin: 5px;
+    }
+
+    form {
+        margin-top: 40px;
+    }
+
+
+</style>
+
+<body>
+<!-- header section start -->
+
+
+<div class="container">
+
+    {% include 'Pizza-Order Project/partial/navbar.html' %}
+
+</div>
+<div class="parent">
+
+    <div class="box">
+
+        <div class="small-container cart-page">
+            <h1>Order Summary</h1>
+            <table>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+
+                </tr>
+
+
+                {% for item in items %}
+                    <tr>
+                    <td>
+
+                        <div class="cart-info">
+                            <img src="{{ item.product.imageURL }}">
+                            <div class="">
+                                <p>{{ item.product.name }}</p>
+                                <small>Price: {{ item.product.price|floatformat:2 }}Taka</small>
+                                <a href="#">Remove</a>
+                            </div>
+                        </div>
+
+
+                    </td>
+                    <td>{{ item.value }}</td>
+                    <td>{{ item.get_subtotal }} Taka</td>
+
+                {% endfor %}
+                </tr>
+            </table>
+            <div class="total-price">
+                <table>
+                    <tr>
+                        <td><strong>Total: {{ order.get_cart_items }}</strong></td>
+
+                        <td><strong> {{ order.get_cart_total }} Taka</strong></td>
+
+                    </tr>
+                </table>
+
+
+            </div>
+            <a href="{% url 'payment'%}" class="btn pay">Payment</a>
+
+        </div>
+
+
+    </div>
+    <!------------Forms adress------------>
+
+    <div class="box">
+
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Phone no</label>
+                    <input type="text" class="form-control" id="inputEmail4" placeholder="enter your number">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputAddress">Address</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+            </div>
+            <div class="form-group">
+                <label for="inputAddress2">Address 2</label>
+                <input type="text" class="form-control" id="inputAddress2"
+                       placeholder="Apartment, studio, or floor">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputCity">City</label>
+                    <input type="text" class="form-control" id="inputCity">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputState">State</label>
+                    <select id="inputState" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputZip">Zip</label>
+                    <input type="text" class="form-control" id="inputZip">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">
+                        Check me out
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Order In Place</button>
+        </form>
+    </div>
+</div>
+
+
+<!-- -----------Footer----------- -->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col-1">
+                <h3>Download Our App</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit, officia?</p>
+                <div class="app-logo">
+                    <img src={% static "img/play-store.png" %} alt="">
+                    <img src={% static "img/app-store.png" %} alt="">
+                </div>
+            </div>
+            <div class="footer-col-2">
+                <img src={% static "img/logo.png" %} alt="">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit, officia?</p>
+            </div>
+            <div class="footer-col-3">
+                <h3>Useful Link</h3>
+                <ul>
+                    <li>Copuns</li>
+                    <li>Blof post</li>
+                    <li>Return Policy</li>
+                    <li>Join affiliate</li>
+                </ul>
+            </div>
+            <div class="footer-col-3">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li>Facebook</li>
+                    <li>Twitter</li>
+                    <li>Instagram</li>
+                    <li>YouTube</li>
+                </ul>
+            </div>
+
+        </div>
+        <hr>
+        <p class="copyright"> copyright 2020 | @afridi </p>
+    </div>
+</div>
+<!-- Js Media Querry start -->
+<script>
+    var menuItems = document.getElementById("menuItems");
+    menuItems.style.maxHeight == "0px";
+
+    function manutoggle() {
+        if (menuItems.style.maxHeight == "0px") {
+            menuItems.style.maxHeight = "200px";
+        } else {
+            menuItems.style.maxHeight = "0px";
+        }
+    }
+</script>
+<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+<!-- Js Media Querry finish -->
+
+<!-- -------js for Toggle Form -->
+
+</body>
+
+</html>

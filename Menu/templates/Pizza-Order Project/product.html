@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;1,500&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title> ALL Products - PizzaHouse | Ecommerce</title>
+    <link rel="stylesheet" href= {% static "css/style.css" %}>
+</head>
+
+<!-- header section start -->
+
+<div class="container">
+
+   {% include 'Pizza-Order Project/partial/navbar.html' %}
+
+</div>
+
+<div class="small-container">
+
+
+    <h2 class="title">Our Products</h2>
+    <div class="row">
+        {% for product in products %}
+            <div class="col-4">
+
+                <!--using this method to views product details page-->
+                <a href="{% url 'product-details' product.id %}">
+
+                    <img src={{ product.image.url }} alt="">
+                    <h4>{{ product.name }}</h4>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    <p>BDT : {{ product.price }} Taka</p>
+                </a>
+            </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+{#    Featured product end#}
+
+<!-- -----------Footer----------- -->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col-1">
+                <h3>Download Our App</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit, officia?</p>
+                <div class="app-logo">
+                    <img src={% static "img/play-store.png" %} alt="">
+                    <img src={% static "img/app-store.png" %} alt="">
+                </div>
+            </div>
+            <div class="footer-col-2">
+                <img src={% static "img/logo.png" %} alt="">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit, officia?</p>
+            </div>
+            <div class="footer-col-3">
+                <h3>Useful Link</h3>
+                <ul>
+                    <li>Copuns</li>
+                    <li>Blof post</li>
+                    <li>Return Policy</li>
+                    <li>Join affiliate</li>
+                </ul>
+            </div>
+            <div class="footer-col-3">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li>Facebook</li>
+                    <li>Twitter</li>
+                    <li>Instagram</li>
+                    <li>YouTube</li>
+                </ul>
+            </div>
+
+        </div>
+        <hr>
+        <p class="copyright"> copyright 2020 | @afridi </p>
+    </div>
+</div>
+</div>
+
+</body>
