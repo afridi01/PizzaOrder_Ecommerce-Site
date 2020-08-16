@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;1,500&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Pizza | House</title>
+    <link rel="stylesheet" href= {% static "css/style.css" %}>
+
+
+</head>
+<body>
+
+<!-- header section start -->
+{#{% block content %}#}
+<div class="header">
+
+
+    <div class="container">
+
+      {% include 'Pizza-Order Project/partial/navbar.html' %}
+
+
+        <div class="row">
+            <div class="col-2">
+                <h1> Get Your Pizza <br> A new Taste! </h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> Corporis culpa sunt, quia delectus nobis
+                    consectetur?</p>
+                <a href="" class="btn">Explore Now &#10132;</a>
+            </div>
+            <div class="col-2">
+                <img src={% static "img/images-1.png" %}>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- header section end -->
+
+<!-- Features categories start -->
+<div>
+    <div class="small-container">
+        <h2 class="title">Categories Products</h2>
+        <div class="row">
+
+
+            <div class="col-3">
+                <img src={% static "img/Category (1).jpg" %}>
+            </div>
+            <div class="col-3">
+                <img src={% static "img/Category (2).jpg" %}>
+            </div>
+            <div class="col-3">
+                <img src= {% static "img/Category (3).jpg" %}>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- Features categories end -->
+
+
+<!-- Features product start  Django-->
+<div class="small-container">
+
+
+    <h2 class="title">Our Products</h2>
+    <div class="row">
+        {% for product in products %}
+            <div class="col-4">
+
+                <!--using this method to views product details page-->
+                <a href="{% url 'product-details' product.id %}">
+
+                    <img src={{ product.image.url }} alt="">
+                    <h4>{{ product.name }}</h4>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    <p>BDT : {{ product.price }} Taka</p>
+                </a>
+            </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+
+<!-- Offer -->
+<div class="offer">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-2">
+                <img src={% static "img/Exclusive-Offer (2).png" %} class="offer-img">
+            </div>
+            <div class="col-2">
+                <p>Exclusive available on Pizza House</p>
+                <h1>Todays Special Offer Upto 25%</h1>
+                <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis repellat nam
+                    aspernatur iusto
+                    natus architecto!</small>
+                <a class="btn" href="#">Buy Now &#8594;</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ------------------Testimonial---------- -->
+<div class="testimonial">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-3">
+                <i class="fa fa-quote-left"></i>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur necessitatibus
+                    aperiam libero
+                    consequatur totam eveniet aliquid earum sapiente commodi quae?</p>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                <i class="fa fa-star-o"></i>
+                <img src= {% static "img/user-1.png" %}>
+                <h3>Sean Parker</h3>
+            </div>
+            <div class="col-3">
+                <i class="fa fa-quote-left"></i>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur necessitatibus
+                    aperiam libero
+                    consequatur totam eveniet aliquid earum sapiente commodi quae?</p>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                <i class="fa fa-star-o"></i>
+                <img src= {% static "img/user-1.png" %}>
+                <h3>Harry Smith</h3>
+            </div>
+            <div class="col-3">
+                <i class="fa fa-quote-left"></i>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur necessitatibus
+                    aperiam libero
+                    consequatur totam eveniet aliquid earum sapiente commodi quae?</p>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                <i class="fa fa-star-o"></i>
+                <img src= {% static "img/user-2.png" %}>
+                <h3>Anas Biswas</h3>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- ------------Brands------------ -->
+<div class="brands">
+    <div class="container">
+        <div class="row">
+            <div class="col-5">
+            <a href="https://www.bkash.com"><img src={% static "img/logo-5.png" %} alt=""></a>
+            </div>
+            <div class="col-5">
+                <img src={% static "img/logo-2.png" %} alt="">
+            </div>
+            <div class="col-5">
+                <img src={% static "img/logo-3.png" %} alt="">
+            </div>
+            <div class="col-5">
+                <img src={% static "img/logo-4.png" %} alt="">
+            </div>
+            <div class="col-5">
+                <img src={% static "img/logo-6.png" %} alt="">
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- -----------Footer----------- -->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col-1">
+                <h3>Download Our App</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit, officia?</p>
+                <div class="app-logo">
+                    <img src={% static "img/play-store.png" %} alt="">
+                    <img src={% static "img/app-store.png" %} alt="">
+                </div>
+            </div>
+            <div class="footer-col-2">
+                <img src={% static "img/logo.png" %} alt="">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit, officia?</p>
+            </div>
+            <div class="footer-col-3">
+                <h3>Useful Link</h3>
+                <ul>
+                    <li>Copuns</li>
+                    <li>Blof post</li>
+                    <li>Return Policy</li>
+                    <li>Join affiliate</li>
+                </ul>
+            </div>
+            <div class="footer-col-3">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li>Facebook</li>
+                    <li>Twitter</li>
+                    <li>Instagram</li>
+                    <li>YouTube</li>
+                </ul>
+            </div>
+
+        </div>
+        <hr>
+        <p class="copyright"> copyright 2020 | @afridi </p>
+    </div>
+</div>
+
+<!-- Js -->
+<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+<script>
+    var menuItems = document.getElementById("menuItems");
+    menuItems.style.maxHeight == "0px";
+
+    function manutoggle() {
+        if (menuItems.style.maxHeight == "0px") {
+            menuItems.style.maxHeight = "200px";
+        } else {
+            menuItems.style.maxHeight = "0px";
+        }
+    }
+</script>
+{#{% endblock %}#}
+
+<!-- Js Media Querry finish -->
+
+
+</body>
+</html>
