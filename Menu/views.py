@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from django.contrib.auth.models import auth
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
 from django.contrib.auth import logout
 
@@ -10,7 +10,7 @@ from django.contrib.auth import logout
 def index(request):
     products = Product.objects.all()
     context = {'products': products}
-    return render(request, 'Pizza-Order Project/index.html', context)
+    return render(request, 'Pizza-Order Project/home.html', context)
 
 
 def product(request):
@@ -22,9 +22,21 @@ def product(request):
 def productA(request, pk):
     prod = Product.objects.get(id=pk)
 
-    context = {'prod': prod, }
+    context = {'prod': prod}
 
     return render(request, 'pizza-Order Project/product-details.html', context)
+
+
+def add_item(request):
+    if request.method == 'POST':
+        prodid = request.POST['prodid']
+        qty = request.POST['qty']
+        item = Product.objects.get(id=prodid)
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        orderitem = OrderItem(product=item, order=order, value=qty)
+        orderitem.save()
+        return JsonResponse({'message': 'Success'})
 
 
 def account(request):
@@ -32,7 +44,6 @@ def account(request):
         name = request.POST['name']
         # Email = request.POST['email']
         pas = request.POST['password']
-
         user = auth.authenticate(username=name, password=pas)
 
         if user is not None:
@@ -55,7 +66,9 @@ def register(request):
         name = request.POST['name']
         email = request.POST['email']
         pas = request.POST['password']
-        user = User.objects.create_user(username=name, email=email, password=pss)
+        user = User.objects.create_user(username=name, email=email, password=pas)
+        customer = Customer(user=user, name=name, email=email)
+        customer.save()
         return redirect('Account')
 
 

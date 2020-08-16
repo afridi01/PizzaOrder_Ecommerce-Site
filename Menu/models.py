@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.shortcuts import reverse
 
 
 # Create your models here.
@@ -27,15 +28,6 @@ class Product(models.Model):
         except:
             url = ''
         return url
-
-
-class Related_Product(models.Model):
-    name = models.CharField(max_length=200, null=True)
-    price = models.FloatField()
-    image = models.ImageField(null=True, blank=True)
-
-    def __str__(self):
-        return self.name
 
 
 class Order(models.Model):
@@ -73,17 +65,3 @@ class OrderItem(models.Model):
     def get_subtotal(self):
         subtotal = self.product.price * self.value
         return subtotal
-
-
-class ShippingAddress(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
-    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
-    address = models.CharField(max_length=200, null=True)
-    phone = models.CharField(max_length=200, null=True)
-    city = models.CharField(max_length=200, null=True)
-    state = models.CharField(max_length=200, null=True)
-    zipcode = models.CharField(max_length=200, null=True)
-    date_added = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.address

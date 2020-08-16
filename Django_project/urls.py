@@ -32,6 +32,7 @@ urlpatterns = [
     path('logout/', views.user_logout, name='LogOut'),
     path('checkout/', views.checkout, name='checkOut'),
     path('payment/', views.payment, name='payment'),
+    path('add-item/', views.add_item, name='add_item'),
 
 
 ]
