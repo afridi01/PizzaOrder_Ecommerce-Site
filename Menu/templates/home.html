@@ -1,20 +1,7 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
-<html lang="en">
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;1,500&display=swap"
-          rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Pizza | House</title>
-    <link rel="stylesheet" href= {% static "css/style.css" %}>
-
-
-</head>
-<body>
+{% block content %}
+    <body>
 
 <!-- header section start -->
 <div class="header">
@@ -22,7 +9,7 @@
 
     <div class="container">
 
-      {% include 'Pizza-Order Project/partial/navbar.html' %}
+      {% include 'partial/navbar.html' %}
 
 
         <div class="row">
@@ -183,7 +170,7 @@
     </div>
 </div>
 <!-- -----------Footer----------- -->
- {% include 'Pizza-Order Project/partial/footer.html' %}
+ {% include 'partial/footer.html' %}
 
 <!-- Js -->
 <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
@@ -204,4 +191,4 @@
 
 
 </body>
-</html>     
+{% endblock %}

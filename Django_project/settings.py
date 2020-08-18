@@ -122,4 +122,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/admin/img/'
 
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/admin/img')

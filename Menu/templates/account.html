@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
@@ -93,7 +94,7 @@
 
 <div class="container">
 
-   {% include 'Pizza-Order Project/partial/navbar.html' %}
+   {% include 'partial/navbar.html' %}
 
 </div>
 
@@ -109,8 +110,7 @@
             <div class="col-2">
                 <div class="form-container">
                     <div class="form-btn">
-                        <span > <a href="#"> <h2>Register</h2> </a> </span>
-
+                        <span> <a href="#"> <h2>Login</h2> </a> </span>
 
 
                     </div>
@@ -118,25 +118,29 @@
                         {% csrf_token %}
 
                         <input type="text" name="name" placeholder="username">
-                        <input type="text" name="email" placeholder="email">
+                        <input type="text" name="email" placeholder="Email">
                         <input type="password" name="password" placeholder="password">
-                        <input class="btn" type="submit">
-
-                        <a href="{% url 'Account' %}"> <h2> Login </h2> </a>
-
+                        <input type="submit" class="btn">
+                        <a href="{% url 'RegisterPage' %}"><h2>Sign Up </h2></a>
 
                     </form>
 
 
                 </div>
             </div>
+            <div>
+                {% for message in messages %}
+                    <h3>{{ message }}</h3>
+                {% endfor %}
+            </div>
         </div>
+
     </div>
 </div>
 
 
 <!-- -----------Footer----------- -->
- {% include 'Pizza-Order Project/partial/footer.html' %}
+ {% include 'partial/footer.html' %}
 <!-- Js Media Querry start -->
 <script>
     var menuItems = document.getElementById("menuItems");
@@ -150,8 +154,8 @@
         }
     }
 </script>
-<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 <!-- Js Media Querry finish -->
+<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 
 <!-- -------js for Toggle Form -->
 

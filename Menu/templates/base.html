@@ -18,13 +18,13 @@
 <body>
 
 <!-- header section start -->
-{#{% block content %}#}
+{% block content %}
 <div class="header">
 
 
     <div class="container">
 
-      {% include 'Pizza-Order Project/partial/navbar.html' %}
+      {% include 'partial/navbar.html' %}
 
 
         <div class="row">
@@ -239,7 +239,7 @@
         }
     }
 </script>
-{#{% endblock %}#}
+{% endblock %}
 
 <!-- Js Media Querry finish -->
 

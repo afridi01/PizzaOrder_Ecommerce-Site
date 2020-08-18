@@ -10,13 +10,13 @@ from django.contrib.auth import logout
 def index(request):
     products = Product.objects.all()
     context = {'products': products}
-    return render(request, 'Pizza-Order Project/home.html', context)
+    return render(request, 'home.html', context)
 
 
 def product(request):
     products = Product.objects.all()
     context = {'products': products}
-    return render(request, 'pizza-Order Project/product.html', context)
+    return render(request, 'product.html', context)
 
 
 def productA(request, pk):
@@ -24,7 +24,7 @@ def productA(request, pk):
 
     context = {'prod': prod}
 
-    return render(request, 'pizza-Order Project/product-details.html', context)
+    return render(request, 'product-details.html', context)
 
 
 def add_item(request):
@@ -54,13 +54,13 @@ def account(request):
             messages.info(request, 'invalid info please make sure username & password')
             return redirect('/account')
     else:
-        return render(request, 'Pizza-Order Project/account.html')
-    # return render(request, 'Pizza-Order Project/account.html')
+        return render(request, 'account.html')
+
 
 
 def register(request):
     if request.method == 'GET':
-        return render(request, 'Pizza-Order Project/register.html')
+        return render(request, 'register.html')
 
     elif request.method == 'POST':
         name = request.POST['name']
@@ -86,7 +86,7 @@ def cart(request):
         items = []
         order = {'get_cart_item': 0, 'get_cart_total': 0}
     context = {'items': items, 'order': order}
-    return render(request, 'Pizza-Order Project/cart.html', context)
+    return render(request, 'cart.html', context)
 
 
 def checkout(request):
@@ -99,7 +99,7 @@ def checkout(request):
         items = []
         order = {'get_cart_item': 0, 'get_cart_total': 0}
     context = {'items': items, 'order': order}
-    return render(request, 'Pizza-Order Project/checkout.html', context)
+    return render(request, 'checkout.html', context)
 
 
 def payment(request):

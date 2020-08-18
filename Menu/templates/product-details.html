@@ -22,7 +22,7 @@
 
 <div class="container">
 
-    {% include 'Pizza-Order Project/partial/navbar.html' %}
+    {% include 'partial/navbar.html' %}
 
 </div>
 
@@ -30,7 +30,7 @@
 <div class="small-container single-product">
     <div class="row">
         <div class="col-2">
-            <img src={{ prod.image.url }}  width="100%" alt="" id="productimg">
+            <img  id="productimg" src={{ prod.image.url }}  width="100%" alt="">
 
             <div class="small-img-row">
                 <div class="small-img-col">
@@ -52,9 +52,9 @@
         <div class="col-2">
             <p>Home / Pizza</p>
             <h1>{{ prod.name }}</h1>
-            <p style="display: none" id="prodid">{{ prod.id }}</p>
+            <p  style="display: none" id="prodid">{{ prod.id }}</p>
             <h4>Price: {{ prod.price }} bdt</h4>
-            <select name="" id="">
+            <select id="quty" name="" id="">
                 <option value=""> 6"</option>
                 <option value=""> 9"</option>
                 <option value=""> 12"</option>
@@ -62,7 +62,7 @@
                 <option value=""> 18"</option>
                 <option value=""> 21"</option>
             </select>
-            <input id="qty" type="number" value="0">
+            <input id="qty" type="number" value="1">
             <a id="cart-add" data-product="{{ product.id }}" data-action="add" class="btn update-cart"> Add To Cart</a>
 
             <br>
@@ -140,7 +140,7 @@
 </div>
 
 
-{% include 'Pizza-Order Project/partial/footer.html' %}
+{% include 'partial/footer.html' %}
 <!-- Js Media Querry start -->
 <script>
     var menuItems = document.getElementById("menuItems");
@@ -185,10 +185,12 @@
     $('#cart-add').on('click', function () {
         var prodid = $('#prodid').text()
         var qty = $('#qty').val()
+        var quty = $('#quty').val()
         var data = {
             csrfmiddlewaretoken: '{{ csrf_token }}',
             prodid: prodid,
             qty: qty,
+            auty:quty,
 
         }
         $.ajax({
