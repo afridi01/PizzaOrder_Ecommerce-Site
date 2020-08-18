@@ -1,2 +1,5 @@
 # Django_project
- Pizza Order Ecom site. using html,css,js,bootstrap,django,mysql.
+ Pizza Order Ecommerce site .
+ Frontend - Using html,css,js, Bootstrap. 
+ Backend - Django Framework.
+ Database - mysql.
